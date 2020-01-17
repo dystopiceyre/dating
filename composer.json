@@ -1,0 +1,12 @@
+{
+  "name": "oringhiser/328/dating",
+  "authors": [
+    {
+      "name": "Olivia Ringhiser",
+      "email": "oringhiser@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
