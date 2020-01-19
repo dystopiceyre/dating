@@ -1,0 +1,13 @@
+fieldset {
+    border: black 2px solid;
+    padding: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    margin: 3px;
+}
+

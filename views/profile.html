@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Up A Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="/328/dating/styles/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <fieldset class="form-group" id="personal-info">
+        <legend>Personal Info</legend>
+        <fieldset class="form-group" id="basic">
+            <legend>Name and Date of Birth</legend>
+            <label for="first-name">First Name</label><input type="text" id="first-name"><br>
+            <label for="last-name">Last Name</label><input type="text" id="last-name"><br>
+
+            <label for="month">Month</label>
+            <select id="month">
+                <option value="month-pholder">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <label for="day">Day</label><input type="number" min="1" max="31" id="day">
+            <label>Year
+                <input type="number" min="1920" max="2002">
+            </label>
+<!--            TODO: race-->
+        </fieldset>
+
+        <fieldset>
+            <legend>Gender and Sexuality</legend>
+            <h3>Gender</h3>
+            <label>
+                <input type="radio" name="gender" value="male">Male
+            </label><br>
+            <label>
+                <input type="radio" name="gender" value="female">Female
+            </label><br>
+            <label>
+                <input type="radio" name="gender" value="agender">Agender
+            </label><br>
+            <label>
+                <input type="radio" name="gender" value="nonbinary">Non-binary
+            </label><br>
+            <label>
+                <input type="radio" name="gender" value="genderqueer">Genderqueer
+            </label><br>
+            <label>
+                <input type="radio" name="gender" value="other">Other
+            </label><br>
+
+            <h3>Pronouns</h3>
+            <label>
+                <input type="radio" name="pronouns" value="hehim">He/Him
+            </label><br>
+            <label>
+                <input type="radio" name="pronouns" value="sheher">She/Her
+            </label><br>
+            <label>
+                <input type="radio" name="pronouns" value="theythem">They/Them
+            </label><br>
+            <label>
+                <input type="radio" name="pronouns" value="other">Other
+            </label><br>
+
+            <h3>Sexuality</h3>
+            <label>
+                <input type="radio" name="sexuality" value="straight">Straight
+            </label><br>
+            <label>
+                <input type="radio" name="sexuality" value="gay">Gay
+            </label><br>
+            <label>
+                <input type="radio" name="sexuality" value="bipan">Bisexual/Pansexual
+            </label><br>
+            <label>
+                <input type="radio" name="sexuality" value="ace">Asexual
+            </label><br>
+            <label>
+                <input type="radio" name="sexuality" value="queer">Queer
+            </label><br>
+        </fieldset>
+
+        <fieldset class="form-group" id="contact">
+            <legend>Contact Information</legend>
+            <label for="email">Email address<span class="text-danger err" id="email-err">*required</span></label>
+            <input type="text" class="form-control required-input" name="email-address" id="email">
+
+            <label for="phone">Phone number<span class="text-danger err" id="phone-err">*required</span></label>
+            <span class="err" id="err-phone">
+                Please enter a phone number
+            </span>
+            <input type="text" class="form-control required-input" name="phone-number" id="phone">
+        </fieldset>
+
+        <fieldset class="form-group" id="address">
+            <legend>Address</legend>
+            <label for="street1">Street address<span class="text-danger required-inputErr">*required</span></label>
+            <input type="text" class="form-control required-input" name="address-street" id="street1">
+
+            <label for="street2">Apartment #</label>
+            <input type="text" class="form-control" name="apt" id="street2">
+
+            <label for="city">City<span class="text-danger required-inputErr">*required</span></label>
+            <input type="text" class="form-control required-input" name="city" id="city">
+
+            <label for="state">State</label>
+            <select class="form-control" name="state" id="state">
+                <option value="select">Select</option>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+            </select>
+
+            <label for="zip">ZIP code<span class="text-danger required-inputErr">*required</span></label>
+            <input type="text" class="form-control required-input" name="zip" id="zip">
+        </fieldset>
+    </fieldset>
+
+
+<!--    make on separate page w/ bootstrap?-->
+    <fieldset class="form-group" id="personality">
+        <legend>Personality</legend>
+    </fieldset>
+
+    <fieldset class="form-group" id="interests">
+        <legend>Interests</legend>
+    </fieldset>
+
+    <fieldset class="form-group" id="partner-pref">
+        <legend>Partner Preferences</legend>
+        <h3>Partner Gender</h3>
+        <label>
+            <input type="checkbox" name="gender" value="male-partner">Male
+        </label><br>
+        <label>
+            <input type="checkbox" name="gender" value="female-partner">Female
+        </label><br>
+        <label>
+            <input type="checkbox" name="gender" value="agender-partner">Agender
+        </label><br>
+        <label>
+            <input type="checkbox" name="gender" value="nonbinary-partner">Non-binary
+        </label><br>
+        <label>
+            <input type="checkbox" name="gender" value="genderqueer-partner">Genderqueer
+        </label><br>
+        <label>
+            <input type="checkbox" name="gender" value="other-partner">Other
+        </label><br>
+
+
+        <h3>Partner Sexuality</h3>
+        <label>
+            <input type="checkbox" name="sexuality" value="straight-partner">Straight
+        </label><br>
+        <label>
+            <input type="checkbox" name="sexuality" value="gay-partner">Gay
+        </label><br>
+        <label>
+            <input type="checkbox" name="sexuality" value="bipan-partner">Bisexual/Pansexual
+        </label><br>
+        <label>
+            <input type="checkbox" name="sexuality" value="ace-partner">Asexual
+        </label><br>
+        <label>
+            <input type="checkbox" name="sexuality" value="queer-partner">Queer
+        </label><br>
+
+<!--        //long distance-->
+<!--        //serious or casual-->
+<!--        //age pref-->
+<!--        //race pref-->
+<!--        //$$(?)-->
+
+    </fieldset>
+
+
+</div>
+
+<script src="/305/bootstrap-tutorial/js/jquery.slim.min.js"></script>
+<script src="/305/bootstrap-tutorial/js/popper.min.js"></script>
+<script src="/305/bootstrap-tutorial/js/bootstrap.min.js"></script>
+</body>
+</html>
