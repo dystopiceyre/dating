@@ -1,17 +1,52 @@
+body {
+    background-image: url("/328/dating/images/parchment.jpg");
+    background-size: cover;
+    background-color: tan;
+    margin: 3em;
+}
+
+.blockquote-footer {
+    color: darkslateblue;
+}
+
+.btn {
+    background-color: darkslateblue;
+    border: black 1px solid;
+    display: block;
+    margin: auto;
+    width: fit-content;
+}
+
+h1, h2, h3 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: bold;
+}
+
 fieldset {
     border: black 2px solid;
     padding: 15px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
 }
 
-.form-inline .form-control  {
+.form-inline .form-control {
     margin-right: 20px;
+}
+
+img {
+    float: right;
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: auto;
 }
 
 input, label, select {
     margin-right: 3px;
 }
 
+p {
+    font-family: 'Raleway', sans-serif;
+}
