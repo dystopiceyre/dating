@@ -1,17 +1,18 @@
 body {
     background-image: url("/328/dating/images/parchment.jpg");
     background-size: cover;
-    background-color: tan;
+    background-color: #DAC1A0;
     margin: 3em;
 }
 
 .blockquote-footer {
-    color: darkslateblue;
+    color: #459AF5;
 }
 
 .btn {
-    background-color: darkslateblue;
+    background-color: #459AF5;
     border: black 1px solid;
+    border-radius: 15px;
     display: block;
     margin: auto;
     width: fit-content;
@@ -20,24 +21,30 @@ body {
 h1, h2, h3 {
     font-family: 'Great Vibes', cursive;
     font-weight: bold;
+    color: #2D2F31;
 }
 
 fieldset {
-    border: black 2px solid;
+    border: #2D2F31 2px solid;
     padding: 15px;
 }
 
 h1, h2 {
     text-align: center;
+    color: #2D2F31;
 }
 
 .form-inline .form-control {
     margin-right: 20px;
 }
 
+hr {
+    height: 5px;
+    border-top: 3px dotted #9B8B2D;
+}
+
 img {
-    float: right;
-    width: 500px;
+    width: 475px;
     height: auto;
     display: block;
     margin: auto;
@@ -49,4 +56,5 @@ input, label, select {
 
 p {
     font-family: 'Raleway', sans-serif;
+    color: #2D2F31;
 }
