@@ -16,180 +16,9 @@
 </head>
 <body>
 <div class="container">
-    <h1>Set Up A Profile</h1>
-    <fieldset class="form-group" id="personal-info">
-        <legend>Personal Info</legend>
-        <div class="form-group form-inline" id="basic">
-            <label for="first-name">First Name</label><input type="text" id="first-name"
-                                                             class="form-control required-input"><br>
-            <label for="last-name">Last Name</label><input type="text" id="last-name"
-                                                           class="form-control required-input"><br>
-        </div>
-        <div class="form-group form-inline">
-            <label for="month">Month</label>
-            <select id="month" class="form-control required-input form-inline">
-                <option value="month-pholder">Options</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
-            <label for="day">Day</label><input type="number" min="1" max="31" id="day"
-                                               class="form-control required-input form-inline">
-            <label>Year
-                <input type="number" min="1920" max="2002" class="form-control required-input form-inline">
-            </label>
-        </div>
-        <h3>Race/Ethnicity</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="white">White
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="black">Black
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="latinx">Latinx
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="asian">Asian
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="native">Native American
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="pi">Pacific Islander
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="other-race">Other
-            </label><br>
-        </div>
-    </fieldset>
-
-    <fieldset>
-        <legend>Gender and Sexuality</legend>
-        <h3>Gender</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="male">Male
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="female">Female
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="agender">Agender
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="nonbinary">Non-binary
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="genderqueer">Genderqueer
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="gender" value="other">Other
-            </label><br>
-        </div>
-
-        <h3>Pronouns</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="pronouns" value="hehim">He/Him
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="pronouns" value="sheher">She/Her
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="pronouns" value="theythem">They/Them
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="pronouns" value="other">Other
-            </label><br>
-        </div>
-
-        <h3>Sexuality</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="sexuality" value="straight">Straight
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="sexuality" value="gay">Gay
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="sexuality" value="bipan">Bisexual/Pansexual
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="sexuality" value="ace">Asexual
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="radio" name="sexuality" value="queer">Queer
-            </label><br>
-        </div>
-    </fieldset>
-
-    <fieldset class="form-group" id="contact">
-        <legend>Contact Information</legend>
+    <form>
         <label for="email">Email address</label>
         <input type="text" class="form-control required-input" name="email-address" id="email">
-
-        <label for="phone">Phone number</label>
-        <input type="text" class="form-control required-input" name="phone-number" id="phone">
-    </fieldset>
-
-    <fieldset class="form-group" id="address">
-        <legend>Address</legend>
-        <label for="street1">Street address</label>
-        <input type="text" class="form-control required-input" name="address-street" id="street1">
-
-        <label for="street2">Apartment #</label>
-        <input type="text" class="form-control" name="apt" id="street2">
-
-        <label for="city">City</label>
-        <input type="text" class="form-control required-input" name="city" id="city">
-
         <div class="form-group form-inline">
             <label for="state">State</label>
             <select class="form-control required-input" name="state" id="state">
@@ -246,127 +75,41 @@
                 <option value="WV">WV</option>
                 <option value="WY">WY</option>
             </select>
-
-            <label for="zip">ZIP code</label>
-            <input type="text" class="form-control required-input" name="zip" id="zip">
-        </div>
-    </fieldset>
-
-    <!--    make on separate page w/ bootstrap?-->
-    <fieldset class="form-group" id="personality">
-        <legend>Personality</legend>
-    </fieldset>
-
-    <fieldset class="form-group" id="interests">
-        <legend>Interests</legend>
-    </fieldset>
-
-    <fieldset class="form-group" id="partner-pref">
-        <legend>Partner Preferences</legend>
-        <h3>Partner Gender</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="male-partner">Male
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="female-partner">Female
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="agender-partner">Agender
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="nonbinary-partner">Non-binary
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="genderqueer-partner">Genderqueer
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="gender" value="other-partner">Other
-            </label><br>
-        </div>
-
-        <h3>Partner Sexuality</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="sexuality" value="straight-partner">Straight
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="sexuality" value="gay-partner">Gay
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="sexuality" value="bipan-partner">Bisexual/Pansexual
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="sexuality" value="ace-partner">Asexual
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="sexuality" value="queer-partner">Queer
-            </label><br>
-        </div>
-        <h3>Partner Race/Ethnicity</h3>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="white-partner">White
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="black-partner">Black
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="latinx-partner">Latinx
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="asian-partner">Asian
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="native-partner">Native American
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="pi-partner">Pacific Islander
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="race" value="other-race-partner">Other
-            </label><br>
-        </div>
-
-        <!--        //long distance-->
-        <!--        //serious or casual-->
-        <!--        //age pref-->
-        <!--        //race pref-->
-        <!--        //$$(?)-->
-
-    </fieldset>
-
-
+            <h2>Seeking</h2>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="male">Male
+                </label><br>
+            </div>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="female">Female
+                </label><br>
+            </div>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="agender">Agender
+                </label><br>
+            </div>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="nonbinary">Non-binary
+                </label><br>
+            </div>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="genderqueer">Genderqueer
+                </label><br>
+            </div>
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="radio" name="gender" value="other">Other
+                </label><br>
+            </div>
+            <label for="bio">Biography
+                <textarea id="bio" name="bio"></textarea>
+            </label>
+    </form>
 </div>
 
 <script src="/305/bootstrap-tutorial/js/jquery.slim.min.js"></script>
