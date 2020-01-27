@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Truth Universally Acknowledged</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="/328/dating/styles/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar bg-secondary">
+                <span class="navbar-brand navbar-expand-lg h1 bg-secondary">
+                    <a href="home.html" class="navbar-brand">A Truth Universally Acknowledged</a>
+                </span>
+    </nav>
+    <div class="row">
+        <div class="col">
+            <table>
+                <tr>
+                    <td>Name: {{ @SESSION.first-name }} {{ @SESSION.last-name }}</td>
+                </tr>
+                <tr>
+                    <td>Age: {{ @SESSION.age }}</td>
+                </tr>
+                <tr>
+                    <td>Gender: {{ @SESSION.gender }}</td>
+                </tr>
+                <tr>
+                    <td>Phone Number: {{ @SESSION.phone-number }}</td>
+                </tr>
+                <tr>
+                    <td>Email Address: {{ @SESSION.email }}</td>
+                </tr>
+                <tr>
+                    <td>State: {{ @SESSION.state }}</td>
+                </tr>
+                <tr>
+                    <td>Seeking: {{ @SESSION.seeking }}</td>
+                </tr>
+                <tr>
+                    <td>Indoor Interests: {{ @SESSION.indoor-interests }}</td>
+                </tr>
+                <tr>
+                    <td>Outdoor Interests: {{ @SESSION.outdoor-interests }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <p>Biography: {{ @SESSION.bio }}</p>
+            <!--            TODO: placeholder image-->
+            <button class="btn btn-primary">Contact Me!</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

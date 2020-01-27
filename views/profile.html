@@ -21,7 +21,7 @@
                     <a href="home.html" class="navbar-brand">A Truth Universally Acknowledged</a>
                 </span>
     </nav>
-    <form action="interests.html" method="post">
+    <form action="interests" method="post">
         <h1>Profile</h1>
         <hr>
         <div class="row">
@@ -87,40 +87,40 @@
                     <label>Seeking</label><br>
                     <div class="form-check form-check-inline">
                         <label>
-                            <input type="radio" name="gender" value="male">Male
+                            <input type="checkbox" name="seeking[]" value="male">Male
                         </label><br>
                     </div>
                     <div class="form-check form-check-inline">
                         <label>
-                            <input type="radio" name="gender" value="female">Female
+                            <input type="checkbox" name="seeking[]" value="female">Female
                         </label><br>
                     </div>
                     <div class="form-check form-check-inline">
                         <label>
-                            <input type="radio" name="gender" value="nonbinary">Non-binary
+                            <input type="checkbox" name="seeking[]" value="nonbinary">Non-binary
                         </label><br>
                     </div>
                     <div class="form-check form-check-inline">
                         <label>
-                            <input type="radio" name="gender" value="genderqueer">Genderqueer
+                            <input type="checkbox" name="seeking[]" value="genderqueer">Genderqueer
                         </label><br>
                     </div>
                     <div class="form-check form-check-inline">
                         <label>
-                            <input type="radio" name="gender" value="other">Other
-                            <!--                    TODO: add other text input-->
+                            <input type="checkbox" name="seeking[]" value="other">Other
                         </label><br>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <label for="bio">Biography<br>
-                    <textarea class="form-control" id="bio" name="bio" rows="10" cols="50" placeholder="Tell us about yourself!"></textarea>
+                    <textarea class="form-control" id="bio" name="bio" rows="10" cols="50"
+                              placeholder="Tell us about yourself!"></textarea>
                 </label>
             </div>
         </div>
+        <input type="submit" class="btn btn-success" value="Next">
     </form>
-</div>
 </div>
 
 <script src="/305/bootstrap-tutorial/js/jquery.slim.min.js"></script>

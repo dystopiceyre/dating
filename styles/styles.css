@@ -84,3 +84,8 @@ p {
     font-family: 'Raleway', sans-serif;
     color: #2D2F31;
 }
+
+table, td, tr {
+    border: 2px black solid;
+}
+
