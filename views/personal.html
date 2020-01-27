@@ -1,47 +1,82 @@
-<html>
-<h1>Personal Information</h1>
-<form>
-    <div class="form-group form-inline" id="basic">
-        <label for="first-name">First Name</label><input type="text" id="first-name"
-                                                         class="form-control required-input"><br>
-        <label for="last-name">Last Name</label><input type="text" id="last-name"
-                                                       class="form-control required-input"><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Truth Universally Acknowledged</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="/328/dating/styles/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar bg-secondary">
+                <span class="navbar-brand navbar-expand-lg h1 bg-secondary">
+                    <a href="home.html" class="navbar-brand">A Truth Universally Acknowledged</a>
+                </span>
+    </nav>
+    <div class="row">
+        <div class="col">
+            <h1>Personal Information</h1>
+            <hr>
+            <form action="profile.html" method="post">
+                <label for="first-name">First Name</label><input type="text" id="first-name"
+                                                                 class="form-control required-input"><br>
+                <label for="last-name">Last Name</label><input type="text" id="last-name"
+                                                               class="form-control required-input"><br>
+                <label for="age">Age
+                    <input type="number" min="18" max="118" name="age" id="age" class="form-control required-input">
+                </label><br>
+                <label>Gender</label><br>
+                <div class="form-check form-check-inline">
+                    <label>
+                        <input type="radio" name="gender" id="gender" value="male">Male
+                    </label><br>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>
+                        <input type="radio" name="gender" value="female">Female
+                    </label><br>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>
+                        <input type="radio" name="gender" value="nonbinary">Non-binary
+                    </label><br>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>
+                        <input type="radio" name="gender" value="genderqueer">Genderqueer
+                    </label><br>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>
+                        <input type="radio" name="gender" value="other">Other
+                        <!--    TODO:            add other text input-->
+                    </label>
+                </div>
+                <div class="form-group form-inline">
+                    <label for="phone">Phone number<br>
+                        <input type="text" class="form-control required-input" name="phone-number" id="phone">
+                    </label>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="card">
+                <h1 class="card-title bg-secondary">Attention:</h1>
+                <div class="card-body">
+                    <p class="card-text">All information entered is protected by our privacy policy. Profile information
+                        can only be viewed by others with your permission.</p><br>
+                    <!--                    TODO: add link to privacy policy-->
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success" value="Next">
+        </div>
     </div>
-    <!--    AGE-->
-    <h2>Gender</h2>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="male">Male
-        </label><br>
-    </div>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="female">Female
-        </label><br>
-    </div>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="agender">Agender
-        </label><br>
-    </div>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="nonbinary">Non-binary
-        </label><br>
-    </div>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="genderqueer">Genderqueer
-        </label><br>
-    </div>
-    <div class="form-check form-check-inline">
-        <label>
-            <input type="radio" name="gender" value="other">Other
-        </label><br>
-    </div>
-    <fieldset class="form-group" id="contact">
-        <label for="phone">Phone number</label>
-        <input type="text" class="form-control required-input" name="phone-number" id="phone">
-    </fieldset>
+
+</div>
+</div>
 </form>
+</div>
+</body>
 </html>

@@ -18,6 +18,10 @@ body {
     width: fit-content;
 }
 
+card {
+    margin-bottom: 15px;
+}
+
 h1, h2, h3 {
     font-family: 'Great Vibes', cursive;
     font-weight: bold;
@@ -50,8 +54,30 @@ img {
     margin: auto;
 }
 
+.form-check label {
+    font-weight: normal;
+}
+
 input, label, select {
     margin-right: 3px;
+}
+
+label {
+    font-weight: bold;
+}
+
+nav {
+    margin-bottom: 15px;
+    width: 100%;
+    float: left;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand a {
+    color: #2D2F31;
 }
 
 p {

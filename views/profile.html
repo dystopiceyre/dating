@@ -16,100 +16,111 @@
 </head>
 <body>
 <div class="container">
-    <form>
-        <label for="email">Email address</label>
-        <input type="text" class="form-control required-input" name="email-address" id="email">
-        <div class="form-group form-inline">
-            <label for="state">State</label>
-            <select class="form-control required-input" name="state" id="state">
-                <option value="select">Select</option>
-                <option value="AL">AL</option>
-                <option value="AK">AK</option>
-                <option value="AR">AR</option>
-                <option value="AZ">AZ</option>
-                <option value="CA">CA</option>
-                <option value="CO">CO</option>
-                <option value="CT">CT</option>
-                <option value="DC">DC</option>
-                <option value="DE">DE</option>
-                <option value="FL">FL</option>
-                <option value="GA">GA</option>
-                <option value="HI">HI</option>
-                <option value="IA">IA</option>
-                <option value="ID">ID</option>
-                <option value="IL">IL</option>
-                <option value="IN">IN</option>
-                <option value="KS">KS</option>
-                <option value="KY">KY</option>
-                <option value="LA">LA</option>
-                <option value="MA">MA</option>
-                <option value="MD">MD</option>
-                <option value="ME">ME</option>
-                <option value="MI">MI</option>
-                <option value="MN">MN</option>
-                <option value="MO">MO</option>
-                <option value="MS">MS</option>
-                <option value="MT">MT</option>
-                <option value="NC">NC</option>
-                <option value="NE">NE</option>
-                <option value="NH">NH</option>
-                <option value="NJ">NJ</option>
-                <option value="NM">NM</option>
-                <option value="NV">NV</option>
-                <option value="NY">NY</option>
-                <option value="ND">ND</option>
-                <option value="OH">OH</option>
-                <option value="OK">OK</option>
-                <option value="OR">OR</option>
-                <option value="PA">PA</option>
-                <option value="RI">RI</option>
-                <option value="SC">SC</option>
-                <option value="SD">SD</option>
-                <option value="TN">TN</option>
-                <option value="TX">TX</option>
-                <option value="UT">UT</option>
-                <option value="VT">VT</option>
-                <option value="VA">VA</option>
-                <option value="WA">WA</option>
-                <option value="WI">WI</option>
-                <option value="WV">WV</option>
-                <option value="WY">WY</option>
-            </select>
-            <h2>Seeking</h2>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="male">Male
-                </label><br>
+    <nav class="navbar bg-secondary">
+                <span class="navbar-brand navbar-expand-lg h1 bg-secondary">
+                    <a href="home.html" class="navbar-brand">A Truth Universally Acknowledged</a>
+                </span>
+    </nav>
+    <form action="interests.html" method="post">
+        <h1>Profile</h1>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <label for="email">Email address</label>
+                <input type="text" class="form-control required-input" name="email" id="email">
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select class="form-control required-input" name="state" id="state">
+                        <option value="select">Select</option>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AR">AR</option>
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                    <label>Seeking</label><br>
+                    <div class="form-check form-check-inline">
+                        <label>
+                            <input type="radio" name="gender" value="male">Male
+                        </label><br>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>
+                            <input type="radio" name="gender" value="female">Female
+                        </label><br>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>
+                            <input type="radio" name="gender" value="nonbinary">Non-binary
+                        </label><br>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>
+                            <input type="radio" name="gender" value="genderqueer">Genderqueer
+                        </label><br>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>
+                            <input type="radio" name="gender" value="other">Other
+                            <!--                    TODO: add other text input-->
+                        </label><br>
+                    </div>
+                </div>
             </div>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="female">Female
-                </label><br>
+            <div class="col">
+                <label for="bio">Biography<br>
+                    <textarea class="form-control" id="bio" name="bio" rows="10" cols="50" placeholder="Tell us about yourself!"></textarea>
+                </label>
             </div>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="agender">Agender
-                </label><br>
-            </div>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="nonbinary">Non-binary
-                </label><br>
-            </div>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="genderqueer">Genderqueer
-                </label><br>
-            </div>
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="radio" name="gender" value="other">Other
-                </label><br>
-            </div>
-            <label for="bio">Biography
-                <textarea id="bio" name="bio"></textarea>
-            </label>
+        </div>
     </form>
+</div>
 </div>
 
 <script src="/305/bootstrap-tutorial/js/jquery.slim.min.js"></script>
