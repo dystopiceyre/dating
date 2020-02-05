@@ -8,9 +8,9 @@ data in session variables and display the next form
  */
 
 //checks to see that a string is all alphabetic
-function validName()
+function validName($name)
 {
-
+    return !empty($name) && ctype_alpha($name);
 }
 
 //checks to see that an age is numeric and between 18 and 118
@@ -20,25 +20,27 @@ function validAge($age)
 }
 
 //checks to see that a phone number is valid
-function validPhone()
+function validPhone($phone)
 {
-
+    return !empty($phone);
 }
 
 //checks to see that an email address is valid
-function validEmail()
+function validEmail($email)
 {
-
+    return !empty($email);
 }
 
 //checks each selected indoor interest against a list of valid options
-function validIndoor()
+function validIndoor($indoor)
 {
-
+    return ($indoor == "reading") || ($indoor = "writing-letters") || ($indoor = "playing-instrument") ||
+     ($indoor = "singing") || ($indoor = "sewing") || ($indoor = "cooking");
 }
 
 //checks each selected outdoor interest against a list of valid options
-function validOutdoor()
+function validOutdoor($outdoor)
 {
-
+    return ($outdoor == "horseback-riding") || ($outdoor = "fencing") || ($outdoor = "walking") ||
+        ($outdoor = "picknicking") || ($outdoor = "gardening") || ($outdoor = "swimming");
 }
