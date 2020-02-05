@@ -29,7 +29,7 @@ $f3->route('POST /profile', function () {
     $_SESSION['lastName'] = $_POST['lastName'];
     $_SESSION['age'] = $_POST['age'];
     $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone-number'] = $_POST['phone-number'];
+    $_SESSION['phoneNumber'] = $_POST['phoneNumber'];
     $view = new Template();
     echo $view->render('view/profile.html');
 });
@@ -46,9 +46,8 @@ $f3->route('POST /interests', function () {
 
 //define a summary route
 $f3->route('POST /summary', function () {
-    $_SESSION['indoor-interests'] = $_POST['indoor-interests'];
-    $_SESSION['outdoor-interests'] = $_POST['outdoor-interests'];
-    var_dump($_SESSION);
+    $_SESSION['indoorInterests'] = $_POST['indoorInterests'];
+    $_SESSION['outdoorInterests'] = $_POST['outdoorInterests'];
     $view = new Template();
     echo $view->render('view/summary.html');
 });

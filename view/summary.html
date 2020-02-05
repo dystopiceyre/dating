@@ -34,7 +34,7 @@
                     <td>Gender: {{ @SESSION.gender }}</td>
                 </tr>
                 <tr>
-                    <td>Phone Number: {{ @SESSION.phone-number }}</td>
+                    <td>Phone Number: {{ @SESSION.phoneNumber }}</td>
                 </tr>
                 <tr>
                     <td>Email Address: {{ @SESSION.email }}</td>
@@ -43,13 +43,13 @@
                     <td>State: {{ @SESSION.state }}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{ @SESSION.seeking }}</td>
+                    <td>Seeking: {{ implode(", ", @SESSION.seeking) }}</td>
                 </tr>
                 <tr>
-                    <td>Indoor Interests: {{ @SESSION.indoor-interests }}</td>
+                    <td>Indoor Interests: {{ implode(", ", @SESSION.indoorInterests) }}</td>
                 </tr>
                 <tr>
-                    <td>Outdoor Interests: {{ @SESSION.outdoor-interests }}</td>
+                    <td>Outdoor Interests: {{ implode(", ", @SESSION.outdoorInterests) }}</td>
                 </tr>
             </table>
         </div>
