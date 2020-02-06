@@ -16,7 +16,7 @@ function validName($name)
 //checks to see that an age is numeric and between 18 and 118
 function validAge($age)
 {
-   return !empty($age) && ctype_digit($age) && $age >= 18 && $age <= 118;
+    return !empty($age) && ctype_digit($age) && $age >= 18 && $age <= 118;
 }
 
 //checks to see that a phone number is valid
@@ -31,16 +31,23 @@ function validEmail($email)
     return !empty($email);
 }
 
+//checks each selected seeking value against a list of valid options
+function validateSeeking($seeking) {
+    global $f3;
+    return in_array($seeking, $f3->get('seeking'));
+}
+
+
 //checks each selected indoor interest against a list of valid options
 function validIndoor($indoor)
 {
-    return ($indoor == "reading") || ($indoor = "writing-letters") || ($indoor = "playing-instrument") ||
-     ($indoor = "singing") || ($indoor = "sewing") || ($indoor = "cooking");
+    global $f3;
+    return in_array($indoor, $f3->get('indoor'));
 }
 
 //checks each selected outdoor interest against a list of valid options
 function validOutdoor($outdoor)
 {
-    return ($outdoor == "horseback-riding") || ($outdoor = "fencing") || ($outdoor = "walking") ||
-        ($outdoor = "picknicking") || ($outdoor = "gardening") || ($outdoor = "swimming");
+    global $f3;
+    return in_array($outdoor, $f3->get('outdoor'));
 }

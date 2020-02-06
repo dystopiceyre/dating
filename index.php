@@ -11,6 +11,14 @@ require_once('vendor/autoload.php');
 //Create instance of base class
 $f3 = Base::instance();
 
+//Turn on Fat-Free error reporting
+$f3->set('DEBUG', 3);
+
+//define arrays
+$f3->set('seeking', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
+$f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
+$f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
+
 //define default route
 $f3->route('GET /', function () {
     $view = new Template();
