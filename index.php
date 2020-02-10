@@ -16,6 +16,12 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //define arrays
+$states = array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
+    'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+    'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
+    'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
+    'VA', 'WA', 'WI', 'WV', 'WY');
+$gender = array('male', 'female', 'nonbinary', 'genderqueer', 'other');
 $f3->set('seeking', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
 $f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
 $f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
@@ -30,7 +36,6 @@ $f3->route('GET /', function () {
 $f3->route('GET|POST /personal', function ($f3) {
     //If form has been submitted, validate
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $gender = array('male', 'female', 'nonbinary', 'genderqueer', 'other');
         //Get data from form
         $first = $_POST['firstName'];
         $last = $_POST['lastName'];
@@ -66,12 +71,6 @@ $f3->route('GET|POST /personal', function ($f3) {
 
 //define a profile route
 $f3->route('GET|POST /profile', function ($f3) {
-    $states = array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
-        'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
-        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
-        'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
-        'VA', 'WA', 'WI', 'WV', 'WY');
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $selectedSeeking = array();
         $email = $_POST['email'];

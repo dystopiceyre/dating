@@ -52,16 +52,15 @@
                 <check if="{{ @errors['gender'] }}">
                     <span class="err">{{ @errors['gender'] }}</span>
                 </check>
-                <br>
                 <div class="form-check form-check-inline">
-                    <repeat group="{{ @gender }}" value="{{ @genderChoice }}">
+                    <repeat group="{{ @gender }}" value="{{ @genderOption }}">
                         <label><input type="radio"
                                       name="gender"
-                                      value="{{ @genderChoice }}"
-                            <check if="{{ @selectedGender == @genderChoice }}">
+                                      value="{{ @genderOption }}"
+                            <check if="{{ @gender == @genderOption }}">
                                 checked="checked"
                             </check>
-                            >{{ @genderChoice }}
+                            >{{ @genderOption }}
                         </label><br>
                     </repeat>
                 </div>
