@@ -26,66 +26,33 @@
     <h3>Indoor Interests</h3>
     <form action="#" method="post">
         <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="reading">Reading
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="writing-letters">Letter Writing
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="playing-instrument">Playing an
-                instrument
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="singing">Singing
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="sewing">Sewing
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" class="form-check-input" name="indoorInterests[]" value="cooking">Cooking
-            </label><br>
+            <repeat group="{{ @indoorInterests }}" value="{{ @indoorOption }}">
+                <label><input type="checkbox"
+                              name="indoorInterests[]"
+                              value="{{ @selectedIndoor }}"
+
+                    <check if="{{ isset(@selectedIndoor) && in_array(@indoorOption, @selectedIndoor) }}">
+                        checked="checked"
+                    </check>
+
+                    >{{ @indoorOption }}
+                </label><br>
+            </repeat>
         </div>
         <h3>Outdoor Interests</h3>
         <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="horseback-riding">Horseback riding
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="fencing">Fencing
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="walking">Going on walks
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="picknicking">Picknicking
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="gardening">Gardening
-            </label><br>
-        </div>
-        <div class="form-check form-check-inline">
-            <label>
-                <input type="checkbox" name="outdoorInterests[]" value="swimming">Swimming
-            </label><br>
+            <repeat group="{{ @outdoorInterests }}" value="{{ @outdoorOption }}">
+                <label><input type="checkbox"
+                              name="outdoorInterests[]"
+                              value="{{ @outdoorOption }}"
+
+                    <check if="{{ isset(@selectedOutdoor) && in_array(@outdoorOption, @selectedOutdoor) }}">
+                        checked="checked"
+                    </check>
+
+                    >{{ @outdoorOption }}
+                </label><br>
+            </repeat>
         </div>
         <input type="submit" class="btn btn-success" value="Next">
     </form>

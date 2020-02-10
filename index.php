@@ -66,24 +66,30 @@ $f3->route('GET|POST /personal', function ($f3) {
 
 //define a profile route
 $f3->route('GET|POST /profile', function ($f3) {
+    $states = array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
+        'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
+        'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
+        'VA', 'WA', 'WI', 'WV', 'WY');
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $selectedSeeking = array();
         $email = $_POST['email'];
-        $state = $_POST['state'];
+        $selectedState = $_POST['state'];
         $bio = $_POST['bio'];
         if (!empty($_POST['seeking'])) {
             $selectedSeeking = $_POST['seeking'];
         }
 
         $f3->set('email', $email);
-        $f3->set('state', $state);
+        $f3->set('state', $selectedState);
         $f3->set('seeking', $selectedSeeking);
 
 
         if (validForm()) {
             //Write data to Session
             $_SESSION['email'] = $email;
-            $_SESSION['state'] = $state;
+            $_SESSION['state'] = $selectedState;
             $_SESSION['seeking'] = $selectedSeeking;
             $_SESSION['bio'] = $bio;
 
