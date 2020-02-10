@@ -27,10 +27,10 @@ $f3->route('GET /', function () {
 });
 
 //define a personal route
-$f3->route('GET /personal', function ($f3) {
+$f3->route('GET|POST /personal', function ($f3) {
     //If form has been submitted, validate
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $isValid = true;
+        $gender = array('male', 'female', 'nonbinary', 'genderqueer', 'other');
         //Get data from form
         $first = $_POST['firstName'];
         $last = $_POST['lastName'];
@@ -42,7 +42,7 @@ $f3->route('GET /personal', function ($f3) {
         $f3->set('firstName', $first);
         $f3->set('lastName', $last);
         $f3->set('age', $age);
-        $f3->set('gender', $gender);
+        $f3->set('selectedGender', $gender);
         $f3->set('phoneNumber', $phone);
 
         //If data is valid

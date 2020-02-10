@@ -57,10 +57,11 @@
                     <repeat group="{{ @gender }}" value="{{ @genderChoice }}">
                         <label><input type="radio"
                                       name="gender"
-                                      value="{{ @genderChoice }}">{{ @genderChoice }}
-                            <check if="{{ @gender == @genderChoice }}">
+                                      value="{{ @genderChoice }}"
+                            <check if="{{ @selectedGender == @genderChoice }}">
                                 checked="checked"
                             </check>
+                            >{{ @genderChoice }}
                         </label><br>
                     </repeat>
                 </div>
