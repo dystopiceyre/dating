@@ -16,12 +16,12 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //define arrays
-$states = array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
+$f3->set('states', array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
     'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
     'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
     'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
     'VA', 'WA', 'WI', 'WV', 'WY');
-$gender = array('male', 'female', 'nonbinary', 'genderqueer', 'other');
+$f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer', 'other');
 $f3->set('seeking', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
 $f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
 $f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
@@ -81,9 +81,8 @@ $f3->route('GET|POST /profile', function ($f3) {
         }
 
         $f3->set('email', $email);
-        $f3->set('state', $selectedState);
+        $f3->set('selectedState', $selectedState);
         $f3->set('seeking', $selectedSeeking);
-
 
         if (validForm()) {
             //Write data to Session

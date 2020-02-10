@@ -30,11 +30,9 @@
                 <label><input type="checkbox"
                               name="indoorInterests[]"
                               value="{{ @selectedIndoor }}"
-
                     <check if="{{ isset(@selectedIndoor) && in_array(@indoorOption, @selectedIndoor) }}">
                         checked="checked"
                     </check>
-
                     >{{ @indoorOption }}
                 </label><br>
             </repeat>

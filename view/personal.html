@@ -53,7 +53,7 @@
                     <span class="err">{{ @errors['gender'] }}</span>
                 </check>
                 <div class="form-check form-check-inline">
-                    <repeat group="{{ @gender }}" value="{{ @genderOption }}">
+                    <repeat group="{{ @genders }}" value="{{ @genderOption }}">
                         <label><input type="radio"
                                       name="gender"
                                       value="{{ @genderOption }}"
