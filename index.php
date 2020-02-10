@@ -30,6 +30,7 @@ $f3->route('GET /', function () {
 $f3->route('GET /personal', function ($f3) {
     //If form has been submitted, validate
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $isValid = true;
         //Get data from form
         $first = $_POST['firstName'];
         $last = $_POST['lastName'];
@@ -64,29 +65,31 @@ $f3->route('GET /personal', function ($f3) {
 });
 
 //define a profile route
-$f3->route('POST /profile', function ($f3) {
-    $selectedSeeking = array();
-    $email = $_POST['email'];
-    $state = $_POST['state'];
-    $bio = $_POST['bio'];
-    if (!empty($_POST['seeking'])) {
-        $selectedSeeking = $_POST['seeking'];
-    }
+$f3->route('GET|POST /profile', function ($f3) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $selectedSeeking = array();
+        $email = $_POST['email'];
+        $state = $_POST['state'];
+        $bio = $_POST['bio'];
+        if (!empty($_POST['seeking'])) {
+            $selectedSeeking = $_POST['seeking'];
+        }
 
-    $f3->set('email', $email);
-    $f3->set('state', $state);
-    $f3->set('seeking', $selectedSeeking);
+        $f3->set('email', $email);
+        $f3->set('state', $state);
+        $f3->set('seeking', $selectedSeeking);
 
 
-    if (validForm()) {
-        //Write data to Session
-        $_SESSION['email'] = $email;
-        $_SESSION['state'] = $state;
-        $_SESSION['seeking'] = $selectedSeeking;
-        $_SESSION['bio'] = $bio;
+        if (validForm()) {
+            //Write data to Session
+            $_SESSION['email'] = $email;
+            $_SESSION['state'] = $state;
+            $_SESSION['seeking'] = $selectedSeeking;
+            $_SESSION['bio'] = $bio;
 
-        //Redirect to Interests
-        $f3->reroute('/interests');
+            //Redirect to Interests
+            $f3->reroute('/interests');
+        }
     }
 
     $view = new Template();
@@ -94,28 +97,29 @@ $f3->route('POST /profile', function ($f3) {
 });
 
 //define an interests route
-$f3->route('POST /interests', function ($f3) {
+$f3->route('GET|POST /interests', function ($f3) {
     $selectedIndoor = array();
     $selectedOutdoor = array();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST['indoorInterests'])) {
+            $selectedIndoor = $_POST['indoorInterests'];
+        }
+        if (!empty($_POST['outdoorInterests'])) {
+            $selectedOutdoor = $_POST['outdoorInterests'];
+        }
 
-    if (!empty($_POST['indoorInterests'])) {
-        $selectedIndoor = $_POST['indoorInterests'];
-    }
-    if (!empty($_POST['outdoorInterests'])) {
-        $selectedOutdoor = $_POST['outdoorInterests'];
-    }
-
-    $f3->set('indoorInterests', $selectedIndoor);
-    $f3->set('outdoorInterests', $selectedOutdoor);
+        $f3->set('indoorInterests', $selectedIndoor);
+        $f3->set('outdoorInterests', $selectedOutdoor);
 
 
-    if (validForm()) {
-        //Write data to Session
-        $_SESSION['indoorInterests'] = $selectedIndoor;
-        $_SESSION['outdoorInterests'] = $selectedOutdoor;
+        if (validForm()) {
+            //Write data to Session
+            $_SESSION['indoorInterests'] = $selectedIndoor;
+            $_SESSION['outdoorInterests'] = $selectedOutdoor;
 
-        //Redirect to Summary
-        $f3->reroute('/summary');
+            //Redirect to Summary
+            $f3->reroute('/summary');
+        }
     }
 
     $view = new Template();
@@ -123,8 +127,8 @@ $f3->route('POST /interests', function ($f3) {
 });
 
 //define a summary route
-$f3->route('POST /summary', function () {
-       $view = new Template();
+$f3->route('GET|POST /summary', function () {
+    $view = new Template();
     echo $view->render('view/summary.html');
 });
 

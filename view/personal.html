@@ -25,45 +25,52 @@
         <div class="col">
             <h1>Personal Information</h1>
             <hr>
-            <form action="profile" method="post">
+            <form action="#" method="post">
                 <label for="first-name">First Name</label><input type="text" id="first-name"
-                                                                 name="firstName" class="form-control required-input"><br>
-                <label for="last-name">Last Name</label><input type="text" id="last-name"
-                                                               name="lastName" class="form-control required-input"><br>
+                                                                 name="firstName" value="{{ @firstName }}"
+                                                                 class="form-control required-input">
+                <check if="{{ @errors['firstName'] }}">
+                    <span class="err">{{ @errors['firstName'] }}</span>
+                </check>
+                <br>
+                <label for="last-name">Last Name</label><input type="text" id="last-name" value="{{ @lastName }}"
+                                                               name="lastName"
+                                                               class="form-control required-input"><br>
+                <check if="{{ @errors['lastName'] }}">
+                    <span class="err">{{ @errors['lastName'] }}</span>
+                </check>
+                <br>
                 <label for="age">Age
-                    <input type="number" min="18" max="118" name="age" id="age" class="form-control required-input">
-                </label><br>
+                    <input type="number" min="18" max="118" name="age" id="age" value="{{ @age }}"
+                           class="form-control required-input">
+                </label>
+                <check if="{{ @errors['age'] }}">
+                    <span class="err">{{ @errors['age'] }}</span>
+                </check>
+                <br>
                 <label>Gender</label><br>
+                <check if="{{ @errors['gender'] }}">
+                    <span class="err">{{ @errors['gender'] }}</span>
+                </check>
+                <br>
                 <div class="form-check form-check-inline">
-                    <label>
-                        <input type="radio" name="gender" id="gender" value="male">Male
-                    </label><br>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label>
-                        <input type="radio" name="gender" value="female">Female
-                    </label><br>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label>
-                        <input type="radio" name="gender" value="nonbinary">Non-binary
-                    </label><br>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label>
-                        <input type="radio" name="gender" value="genderqueer">Genderqueer
-                    </label><br>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label>
-                        <input type="radio" name="gender" value="other">Other
-                        <!--    TODO:            add other text input-->
-                    </label>
+                    <repeat group="{{ @gender }}" value="{{ @genderChoice }}">
+                        <label><input type="radio"
+                                      name="gender"
+                                      value="{{ @genderChoice }}">{{ @genderChoice }}
+                            <check if="{{ @gender == @genderChoice }}">
+                                checked="checked"
+                            </check>
+                        </label><br>
+                    </repeat>
                 </div>
                 <div class="form-group form-inline">
                     <label for="phone">Phone number<br>
                         <input type="text" class="form-control required-input" name="phoneNumber" id="phone">
                     </label>
+                    <check if="{{ @errors['phoneNumber'] }}">
+                        <span class="err">{{ @errors['phoneNumber'] }}</span>
+                    </check>
                 </div>
                 <input type="submit" class="btn btn-success" value="Next">
             </form>
@@ -74,7 +81,6 @@
                 <div class="card-body">
                     <p class="card-text">All information entered is protected by our privacy policy. Profile information
                         can only be viewed by others with your permission.</p><br>
-                    <!--                    TODO: add link to privacy policy-->
                 </div>
             </div>
         </div>
