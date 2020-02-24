@@ -26,7 +26,6 @@ class DatingController
             'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
             'VA', 'WA', 'WI', 'WV', 'WY'));
         $this->_f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
-        $this->_f3->set('seeking', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
         $this->_f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
         $this->_f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
     }
@@ -53,32 +52,28 @@ class DatingController
             $last = $_POST['last'];
             if ($this->_validation->validLastName($last)) {
                 $this->_f3->set('lastName', $last);
-            }
-            else {
+            } else {
                 $this->_f3->set("errors['lastName']", "Please enter a last name.");
                 $isValid = false;
             }
             $age = $_POST['age'];
             if ($this->_validation->validAge($age)) {
                 $this->_f3->set('age', $age);
-            }
-            else {
+            } else {
                 $this->_f3->set("errors['age']", "Please enter an age between 18 and 118.");
                 $isValid = false;
             }
             $gender = $_POST['gender'];
-            if (in_array($gender, array('male', 'female', 'nonbinary', 'genderqueer', 'other'))) {
+            if (in_array($gender, $this->_f3->get("genders"))) {
                 $this->_f3->set('selectedGender', $gender);
-            }
-            else {
+            } else {
                 $this->_f3->set("errors['gender']", "Please enter a valid gender.");
                 $isValid = false;
             }
             $phone = $_POST['phone'];
             if ($this->_validation->validPhone($phone)) {
                 $this->_f3->set('phone', $phone);
-            }
-            else {
+            } else {
                 $this->_f3->set("errors['phone']", "Please enter a phone number with only numbers and dashes.");
                 $isValid = false;
             }
@@ -102,19 +97,38 @@ class DatingController
     public function profile()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $isValid = true;
             $selectedSeeking = array();
             $email = $_POST['email'];
+            if ($this->_validation->validEmail($email)) {
+                $this->_f3->set('email', $email);
+            } else {
+                $this->_f3->set("errors['email']", "Please enter a valid email address.");
+                $isValid = false;
+            }
             $selectedState = $_POST['state'];
+            if (in_array($selectedState, $this->_f3->get("states"))) {
+                $this->_f3->set('state', $selectedState);
+            } else {
+                $this->_f3->set("errors['state]", "Please enter a valid state.");
+                $isValid = false;
+            }
             $bio = $_POST['bio'];
+            if (isset($bio)) {
+                $this->_f3->set('bio', $bio);
+            }
             if (!empty($_POST['seeking'])) {
                 $selectedSeeking = $_POST['seeking'];
+                if (in_array($selectedSeeking, $this->_f3->get("genders"))) {
+                    $this->_f3->set('seeking', $selectedSeeking);
+                }
             }
 
             $this->_f3->set('email', $email);
             $this->_f3->set('selectedState', $selectedState);
             $this->_f3->set('seeking', $selectedSeeking);
 
-            if ($this->getValidation()->validForm()) {
+            if ($isValid) {
                 //Write data to Session
                 $_SESSION['email'] = $email;
                 $_SESSION['state'] = $selectedState;
@@ -132,21 +146,34 @@ class DatingController
 
     public function interests()
     {
+        $isValid = true;
         $selectedIndoor = array();
         $selectedOutdoor = array();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!empty($_POST['indoorInterests'])) {
                 $selectedIndoor = $_POST['indoorInterests'];
+                if ($this->_validation->validIndoor($selectedIndoor)) {
+                    $this->_f3->set('indoor', $selectedIndoor);
+                }
+                else {
+                    $isValid = false;
+                }
             }
             if (!empty($_POST['outdoorInterests'])) {
                 $selectedOutdoor = $_POST['outdoorInterests'];
+                if ($this->_validation->validOutdoor($selectedOutdoor)) {
+                    $this->_f3->set('outdoor', $selectedOutdoor);
+                }
+                else {
+                    $isValid = false;
+                }
             }
 
             $this->_f3->set('indoorInterests', $selectedIndoor);
             $this->_f3->set('outdoorInterests', $selectedOutdoor);
 
 
-            if ($this->getValidation()->validForm()) {
+            if ($isValid) {
                 //Write data to Session
                 $_SESSION['indoorInterests'] = $selectedIndoor;
                 $_SESSION['outdoorInterests'] = $selectedOutdoor;
