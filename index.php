@@ -1,72 +1,24 @@
 <?php
-session_start();
-
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Require once the autoload file
 require_once('vendor/autoload.php');
-require_once('model/validation.php');
+session_start();
 
-//Create instance of base class
-$f3 = Base::instance();
-
-//Turn on Fat-Free error reporting
-$f3->set('DEBUG', 3);
-
-//define arrays
-$f3->set('states', array('AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
-    'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
-    'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
-    'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
-    'VA', 'WA', 'WI', 'WV', 'WY'));
-$f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
-$f3->set('seeking', array('male', 'female', 'nonbinary', 'genderqueer', 'other'));
-$f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
-$f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
+$controller = new DatingController();
 
 //define default route
-$f3->route('GET /', function () {
-    $view = new Template();
-    echo $view->render('view/home.html');
+$controller->getF3()->route('GET /', function () {
+    global $controller;
+    $controller->home();
 });
 
 //define a personal route
-$f3->route('GET|POST /personal', function ($f3) {
-    //If form has been submitted, validate
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //Get data from form
-        $first = $_POST['firstName'];
-        $last = $_POST['lastName'];
-        $age = $_POST['age'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phoneNumber'];
-
-        //Add data to hive
-        $f3->set('firstName', $first);
-        $f3->set('lastName', $last);
-        $f3->set('age', $age);
-        $f3->set('selectedGender', $gender);
-        $f3->set('phoneNumber', $phone);
-
-        //If data is valid
-        if (validForm()) {
-            //Write data to Session
-            $_SESSION['firstName'] = $first;
-            $_SESSION['lastName'] = $last;
-            $_SESSION['age'] = $age;
-            $_SESSION['gender'] = $gender;
-            $_SESSION['phoneNumber'] = $phone;
-
-            //Redirect to Profile
-            $f3->reroute('/profile');
-        }
-    }
-
-    //display form
-    $view = new Template();
-    echo $view->render('view/personal.html');
+$controller->getF3()->route('GET|POST /personal', function () {
+    global $controller;
+    $controller->personal();
 });
 
 //define a profile route
