@@ -84,8 +84,7 @@ regex pattern from http://regexlib.com/REDetails.aspx?regexp_id=607
  */
 function validPhone($phone)
 {
-    return !empty($phone) && preg_match('/^(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}$/',
-            $phone);
+    return !empty($phone) && preg_match('/^[2-9]\d{2}-?\d{3}-?\d{4}$/', $phone);
 }
 
 /* checks to see that an email address is valid
@@ -97,7 +96,6 @@ function validEmail($email)
 {
     return !empty($email) && preg_match('/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/', $email);
 }
-
 
 /* checks each selected seeking value against a list of valid options
  * @param Array seeking

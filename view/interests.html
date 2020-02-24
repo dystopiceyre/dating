@@ -26,7 +26,7 @@
     <h3>Indoor Interests</h3>
     <form action="#" method="post">
         <div class="form-check form-check-inline">
-            <repeat group="{{ @indoorInterests }}" value="{{ @indoorOption }}">
+            <repeat group="{{ @indoor }}" value="{{ @indoorOption }}">
                 <label><input type="checkbox"
                               name="indoorInterests[]"
                               value="{{ @selectedIndoor }}"
@@ -39,7 +39,7 @@
         </div>
         <h3>Outdoor Interests</h3>
         <div class="form-check form-check-inline">
-            <repeat group="{{ @outdoorInterests }}" value="{{ @outdoorOption }}">
+            <repeat group="{{ @outdoor }}" value="{{ @outdoorOption }}">
                 <label><input type="checkbox"
                               name="outdoorInterests[]"
                               value="{{ @outdoorOption }}"
