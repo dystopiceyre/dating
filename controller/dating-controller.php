@@ -77,14 +77,23 @@ class DatingController
                 $this->_f3->set("errors['phone']", "Please enter a phone number with only numbers and dashes.");
                 $isValid = false;
             }
+            //check for premium membership
+            if (isset($_POST['premium'])) {
+                $this->_f3->set('premium', true);
+            }
+            $_SESSION["premium"] = (isset($_POST["premium"]) ? true : false);
 
             //Redirect to Profile
             if ($isValid) {
-                $_SESSION['firstName'] = $first;
-                $_SESSION['lastName'] = $last;
-                $_SESSION['age'] = $age;
-                $_SESSION['gender'] = $gender;
-                $_SESSION['phoneNumber'] = $phone;
+                if ($_SESSION['premium']) {
+                    $user = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
+                        $_SESSION['gender'], $_SESSION['phoneNumber']);
+                } else {
+                    $user = new Member($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
+                        $_SESSION['gender'], $_SESSION['phoneNumber']);
+                }
+                $this->_f3->set("user", $user);
+                $_SESSION["user"] = $user;
                 $this->_f3->reroute('/profile');
             }
         }
@@ -135,8 +144,13 @@ class DatingController
                 $_SESSION['seeking'] = $selectedSeeking;
                 $_SESSION['bio'] = $bio;
 
-                //Redirect to Interests
-                $this->_f3->reroute('/interests');
+                //if the user is a premium member, redirect to interests page
+                if (is_a($_SESSION["user"], "PremiumMember")) {
+                    $this->_f3->reroute('/interests-form');
+                } else {
+                    //non-members go straight to the profile summary
+                    $this->_f3->reroute('/profile-summary');
+                }
             }
         }
 
@@ -154,8 +168,7 @@ class DatingController
                 $selectedIndoor = $_POST['indoorInterests'];
                 if ($this->_validation->validIndoor($selectedIndoor)) {
                     $this->_f3->set('indoor', $selectedIndoor);
-                }
-                else {
+                } else {
                     $isValid = false;
                 }
             }
@@ -163,8 +176,7 @@ class DatingController
                 $selectedOutdoor = $_POST['outdoorInterests'];
                 if ($this->_validation->validOutdoor($selectedOutdoor)) {
                     $this->_f3->set('outdoor', $selectedOutdoor);
-                }
-                else {
+                } else {
                     $isValid = false;
                 }
             }
