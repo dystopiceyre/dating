@@ -22,70 +22,21 @@ $controller->getF3()->route('GET|POST /personal', function () {
 });
 
 //define a profile route
-$f3->route('GET|POST /profile', function ($f3) {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $selectedSeeking = array();
-        $email = $_POST['email'];
-        $selectedState = $_POST['state'];
-        $bio = $_POST['bio'];
-        if (!empty($_POST['seeking'])) {
-            $selectedSeeking = $_POST['seeking'];
-        }
-
-        $f3->set('email', $email);
-        $f3->set('selectedState', $selectedState);
-        $f3->set('seeking', $selectedSeeking);
-
-        if (validForm()) {
-            //Write data to Session
-            $_SESSION['email'] = $email;
-            $_SESSION['state'] = $selectedState;
-            $_SESSION['seeking'] = $selectedSeeking;
-            $_SESSION['bio'] = $bio;
-
-            //Redirect to Interests
-            $f3->reroute('/interests');
-        }
-    }
-
-    $view = new Template();
-    echo $view->render('view/profile.html');
+$controller->getF3()->route('GET|POST /profile', function (){
+    global $controller;
+    $controller->profile();
 });
 
 //define an interests route
-$f3->route('GET|POST /interests', function ($f3) {
-    $selectedIndoor = array();
-    $selectedOutdoor = array();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!empty($_POST['indoorInterests'])) {
-            $selectedIndoor = $_POST['indoorInterests'];
-        }
-        if (!empty($_POST['outdoorInterests'])) {
-            $selectedOutdoor = $_POST['outdoorInterests'];
-        }
-
-        $f3->set('indoorInterests', $selectedIndoor);
-        $f3->set('outdoorInterests', $selectedOutdoor);
-
-
-        if (validForm()) {
-            //Write data to Session
-            $_SESSION['indoorInterests'] = $selectedIndoor;
-            $_SESSION['outdoorInterests'] = $selectedOutdoor;
-
-            //Redirect to Summary
-            $f3->reroute('/summary');
-        }
-    }
-
-    $view = new Template();
-    echo $view->render('view/interests.html');
+$controller->getF3()->route('GET|POST /interests', function () {
+    global $controller;
+    $controller->interests();
 });
 
 //define a summary route
-$f3->route('GET|POST /summary', function () {
-    $view = new Template();
-    echo $view->render('view/summary.html');
+$controller->getF3()->route('GET|POST /summary', function () {
+    global $controller;
+    $controller->summary();
 });
 
-$f3->run();
+$controller->getF3()->run();
