@@ -3,21 +3,12 @@
 class DatingValidation
 {
     /* checks to see that a string is all alphabetic
-     * @param String first
+     * @param String name
      * @return boolean
      */
-    function validFirstName($first)
+    function validName($name)
     {
-        return ctype_alpha($first);
-    }
-
-    /* checks to see that a string is all alphabetic
-     * @param String last
-     * @return boolean
-     */
-    function validLastName($last)
-    {
-        return ctype_alpha($last);
+        return !empty($name) && preg_match('/^[A-Za-z]*$/', $name);
     }
 
     /* checks to see that an age is numeric and between 18 and 118
@@ -56,7 +47,12 @@ class DatingValidation
     function validSeeking($seeking)
     {
         global $f3;
-        return in_array($seeking, $f3->get('seeking'));
+        foreach ($seeking as $gender) {
+            if (!in_array($gender, array_values($f3->get('genders')))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /* checks each selected indoor interest against a list of valid options
@@ -66,6 +62,26 @@ class DatingValidation
     function validIndoor($indoor)
     {
         global $f3;
-        return in_array($indoor, $f3->get('indoor'));
+        foreach ($indoor as $interest) {
+            if (!in_array($interest, array_values($f3->get('indoor')))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /* checks each selected outdoor interest against a list of valid options
+     * @param Array outdoor
+     * @return boolean
+     */
+    function validOutdoor($outdoor)
+    {
+        global $f3;
+        foreach ($outdoor as $interest) {
+            if (!in_array($interest, array_values($f3->get('outdoor')))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

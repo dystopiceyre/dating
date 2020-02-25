@@ -26,16 +26,16 @@
             <h1>Personal Information</h1>
             <hr>
             <form action="#" method="post">
-                <label for="first">First Name</label><input type="text" id="first"
-                                                            name="firstName" value="{{ @firstName }}"
-                                                            class="form-control required-input">
+                <label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
+                                                                value="{{ @firstName }}"
+                                                                class="form-control required-input">
                 <check if="{{ @errors['firstName'] }}">
                     <span class="err">{{ @errors['firstName'] }}</span>
                 </check>
                 <br>
-                <label for="last">Last Name</label><input type="text" id="last" value="{{ @lastName }}"
-                                                          name="lastName"
-                                                          class="form-control required-input"><br>
+                <label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
+                                                              value="{{ @lastName }}"
+                                                              class="form-control required-input"><br>
                 <check if="{{ @errors['lastName'] }}">
                     <span class="err">{{ @errors['lastName'] }}</span>
                 </check>
@@ -65,16 +65,16 @@
                     </repeat>
                 </div>
                 <div class="form-group form-inline">
-                    <label for="phone">Phone number<br>
-                        <input type="text" class="form-control required-input" name="phoneNumber" id="phone">
+                    <label for="phoneNumber">Phone number<br>
+                        <input type="text" class="form-control required-input" name="phoneNumber" id="phoneNumber">
                     </label>
                     <check if="{{ @errors['phoneNumber'] }}">
                         <span class="err">{{ @errors['phoneNumber'] }}</span>
                     </check>
                 </div>
                 <div class="form-group">
-                    <label for="membership">Premium Membership</label>
-                        <input type="checkbox" id="membership" value="premium">Sign me up for a premium membership!
+                    <label for="premiumMembership">Premium Membership</label>
+                    <input type="checkbox" id="premiumMembership" value="premiumMembership">Sign me up for a premium membership!
                 </div>
                 <input type="submit" class="btn btn-success" value="Next">
             </form>
