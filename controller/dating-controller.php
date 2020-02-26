@@ -90,7 +90,7 @@ class DatingController
             //Redirect to Profile
             if ($isValid) {
                 //add to session
-                if ($_SESSION['premium']) {
+                if ($_SESSION['premiumMembership']) {
                     $user = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
                         $_SESSION['gender'], $_SESSION['phoneNumber']);
                 } else {
@@ -113,38 +113,32 @@ class DatingController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $isValid = true;
-            $selectedSeeking = array();
             $email = $_POST['email'];
             if ($this->_validation->validEmail($email)) {
-                $this->_f3->set('email', $email);
+                $_SESSION['email'] = $email;
             } else {
                 $this->_f3->set("errors['email']", "Please enter a valid email address.");
                 $isValid = false;
             }
             $selectedState = $_POST['state'];
             if (in_array($selectedState, $this->_f3->get("states"))) {
-                $this->_f3->set('state', $selectedState);
+                $_SESSION['state'] = $selectedState;
             } else {
                 $this->_f3->set("errors['state]", "Please enter a valid state.");
                 $isValid = false;
             }
-            $bio = $_POST['bio'];
-            if (isset($bio)) {
-                $this->_f3->set('bio', $bio);
-            }
             if (!empty($_POST['seeking'])) {
                 $selectedSeeking = $_POST['seeking'];
-                if ($this->_validation->validSeeking($selectedSeeking)) {
-                    $this->_f3->set('seeking', $selectedSeeking);
+                if ($this->_validation->validSeeking($selectedSeeking, $this->_f3)) {
+                    $_SESSION['seeking'] = $selectedSeeking;
                 }
             }
-
-            $this->_f3->set('email', $email);
-            $this->_f3->set('selectedState', $selectedState);
-            $this->_f3->set('seeking', $selectedSeeking);
+            $bio = $_POST['bio'];
+            if (isset($bio)) {
+                $_SESSION['bio'] = $bio;
+            }
 
             if ($isValid) {
-                //Write data to Session
                 //Write data to Session
                 $_SESSION["user"]->setEmail($_SESSION["email"]);
                 $_SESSION["user"]->setState($_SESSION["state"]);
@@ -152,11 +146,11 @@ class DatingController
                 $_SESSION["user"]->setBio($_SESSION["bio"]);
 
                 //if the user is a premium member, redirect to interests page
-                if (is_a($_SESSION["user"], "PremiumMember")) {
-                    $this->_f3->reroute('/interests-form');
+                if (($_SESSION['premiumMembership'])) {
+                    $this->_f3->reroute('/interests');
                 } else {
                     //non-members go straight to the profile summary
-                    $this->_f3->reroute('/profile-summary');
+                    $this->_f3->reroute('/summary');
                 }
             }
         }
@@ -169,33 +163,27 @@ class DatingController
     function interests()
     {
         $isValid = true;
-        $selectedIndoor = array();
-        $selectedOutdoor = array();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!empty($_POST['indoorInterests'])) {
                 $selectedIndoor = $_POST['indoorInterests'];
-                if ($this->_validation->validIndoor($selectedIndoor)) {
-                    $this->_f3->set('indoor', $selectedIndoor);
+                if ($this->_validation->validIndoor($selectedIndoor, $this->_f3)) {
+                    $_SESSION['indoorInterests'] = $selectedIndoor;
                 } else {
                     $isValid = false;
                 }
             }
             if (!empty($_POST['outdoorInterests'])) {
                 $selectedOutdoor = $_POST['outdoorInterests'];
-                if ($this->_validation->validOutdoor($selectedOutdoor)) {
-                    $this->_f3->set('outdoor', $selectedOutdoor);
+                if ($this->_validation->validOutdoor($selectedOutdoor, $this->_f3)) {
+                    $_SESSION['outdoorInterests'] = $selectedOutdoor;
                 } else {
                     $isValid = false;
                 }
             }
 
-            $this->_f3->set('indoorInterests', $selectedIndoor);
-            $this->_f3->set('outdoorInterests', $selectedOutdoor);
-
-
             if ($isValid) {
-                $_SESSION["user"]->setIndoorInterests($_POST["indoor-interests"]);
-                $_SESSION["user"]->setOutdoorInterests($_POST["outdoor-interests"]);
+                $_SESSION["user"]->setIndoorInterests($_SESSION["indoorInterests"]);
+                $_SESSION["user"]->setOutdoorInterests($_SESSION["outdoorInterests"]);
                 //Redirect to Summary
                 $this->_f3->reroute('/summary');
             }

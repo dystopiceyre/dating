@@ -25,36 +25,38 @@
         <div class="col">
             <table>
                 <tr>
-                    <td>Name: {{ @SESSION.firstName }} {{ @SESSION.lastName }}</td>
+                    <td>Name: {{ @SESSION['user']->getFname() }} {{ @SESSION['user']->getLname() }}</td>
                 </tr>
                 <tr>
-                    <td>Age: {{ @SESSION.age }}</td>
+                    <td>Age: {{ @SESSION['user']->getAge() }}</td>
                 </tr>
                 <tr>
-                    <td>Gender: {{ @SESSION.gender }}</td>
+                    <td>Gender: {{ @SESSION['user']->getGender()}}</td>
                 </tr>
                 <tr>
-                    <td>Phone Number: {{ @SESSION.phoneNumber }}</td>
+                    <td>Phone Number: {{ @SESSION['user']->getPhone() }}</td>
                 </tr>
                 <tr>
-                    <td>Email Address: {{ @SESSION.email }}</td>
+                    <td>Email Address: {{ @SESSION['user']->getEmail() }}</td>
                 </tr>
                 <tr>
-                    <td>State: {{ @SESSION.state }}</td>
+                    <td>State: {{ @SESSION['user']->getState() }}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{ implode(", ", @SESSION.seeking) }}</td>
+                    <td>Seeking: {{ implode(", ", @SESSION['user']->getSeeking()) }}</td>
                 </tr>
-                <tr>
-                    <td>Indoor Interests: {{ implode(", ", @SESSION.indoorInterests) }}</td>
-                </tr>
-                <tr>
-                    <td>Outdoor Interests: {{ implode(", ", @SESSION.outdoorInterests) }}</td>
-                </tr>
+                <check if="{{ ($_SESSION['premiumMembership']) }}">
+                    <tr>
+                        <td>Indoor Interests: {{ implode(", ", @SESSION['user']->getIndoorInterests()) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Outdoor Interests: {{ implode(", ", @SESSION['user']->getOutdoorInterests()) }}</td>
+                    </tr>
+                </check>
             </table>
         </div>
         <div class="col">
-            <p>Biography: {{ @SESSION.bio }}</p>
+            <p>Biography: {{ @SESSION['user']->getBio() }}</p>
             <!--            TODO: placeholder image-->
             <button class="btn btn-primary">Contact Me!</button>
         </div>

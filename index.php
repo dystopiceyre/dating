@@ -22,7 +22,7 @@ $controller->getF3()->route('GET|POST /personal', function () {
 });
 
 //define a profile route
-$controller->getF3()->route('GET|POST /profile', function (){
+$controller->getF3()->route('GET|POST /profile', function () {
     global $controller;
     $controller->profile();
 });

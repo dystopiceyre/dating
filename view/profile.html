@@ -28,45 +28,54 @@
             <div class="col">
                 <label for="email">Email address</label>
                 <input type="text" class="form-control required-input" name="email" id="email">
+                <check if="{{ @errors['email'] }}">
+                    <span class="err">{{ @errors['email'] }}</span>
+                </check>
                 <div class="form-group">
                     <label for="state">State</label>
+                    <check if="{{ @errors['state'] }}">
+                        <span class="err">{{ @errors['state'] }}</span>
+                    </check>
                     <select class="form-control required-input" name="state" id="state">
                         <option value="select">Select</option>
                         <repeat group="{{ @states }}"
-                                value="{{ @state }}">
-                            <option value="{{ @state }}"
-
+                                value="{{ @selectedState }}">
+                            <option value="{{ @selectedState }}"
                             <check if="{{ @selectedState == @state }}">
                                 selected="selected"
                             </check>
-                            >{{ @state }}
+                            >{{ @selectedState }}
                             </option>
                         </repeat>
                     </select>
-                    <label>Seeking</label><br>
-                    <div class="form-check form-check-inline">
-                        <repeat group="{{ @genders }}" value="{{ @seekingOption }}">
-                            <label><input type="checkbox"
-                                          name="seeking[]"
-                                          value="{{ @seekingOption }}"
-                                <check if="{{ isset(@selectedSeeking) && in_array(@seekingOption, @selectedSeeking) }}">
-                                    checked="checked"
-                                </check>
-                                >{{ @seekingOption }}
-                            </label><br>
-                        </repeat>
-                    </div>
                 </div>
-                <div class="col">
-                    <label for="bio">Biography<br>
-                        <textarea class="form-control" id="bio" name="bio" rows="10" cols="50"
-                                  placeholder="Tell us about yourself!"></textarea>
-                    </label>
+                <label>Seeking</label><br>
+                <div class="form-check form-check-inline">
+                    <repeat group="{{ @genders }}" value="{{ @seekingOption }}">
+                        <check if="{{ @errors['seeking'] }}">
+                            <span class="err">{{ @errors['seeking'] }}</span>
+                        </check>
+                        <label><input type="checkbox"
+                                      name="seeking[]"
+                                      value="{{ @seekingOption }}"
+                            <check if="{{ isset(@selectedSeeking) && in_array(@seekingOption, @selectedSeeking) }}">
+                                checked="checked"
+                            </check>
+                            >{{ @seekingOption }}
+                        </label><br>
+                    </repeat>
                 </div>
             </div>
+            <div class="col">
+                <label for="bio">Biography<br>
+                    <textarea class="form-control" id="bio" name="bio" rows="10" cols="50"
+                              placeholder="Tell us about yourself!"></textarea>
+                </label>
+            </div>
         </div>
-        <input type="submit" class="btn btn-success" value="Next">
-    </form>
+</div>
+<input type="submit" class="btn btn-success" value="Next">
+</form>
 </div>
 
 <script src="/305/bootstrap-tutorial/js/jquery.slim.min.js"></script>

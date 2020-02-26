@@ -29,7 +29,7 @@
             <repeat group="{{ @indoor }}" value="{{ @indoorOption }}">
                 <label><input type="checkbox"
                               name="indoorInterests[]"
-                              value="{{ @selectedIndoor }}"
+                              value="{{ @indoorOption }}"
                     <check if="{{ isset(@selectedIndoor) && in_array(@indoorOption, @selectedIndoor) }}">
                         checked="checked"
                     </check>

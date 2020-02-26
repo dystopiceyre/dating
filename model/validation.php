@@ -31,24 +31,24 @@ class DatingValidation
     }
 
     /* checks to see that an email address is valid
-    regex pattern from: https://www.regular-expressions.info/email.html
+    regex pattern from: http://regexlib.com/REDetails.aspx?regexp_id=21
      * @param String email
      * @return boolean
      */
     function validEmail($email)
     {
-        return !empty($email) && preg_match('/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/', $email);
+        return !empty($email) && preg_match('/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', $email);
     }
 
     /* checks each selected seeking value against a list of valid options
      * @param Array seeking
      * @return boolean
      */
-    function validSeeking($seeking)
+    function validSeeking($seeking, $f3)
     {
-        global $f3;
         foreach ($seeking as $gender) {
-            if (!in_array($gender, array_values($f3->get('genders')))) {
+            if (!in_array($gender, array_values($f3->get("genders")))) {
+                echo "false";
                 return false;
             }
         }
@@ -59,9 +59,8 @@ class DatingValidation
      * @param Array indoor
      * @return boolean
      */
-    function validIndoor($indoor)
+    function validIndoor($indoor, $f3)
     {
-        global $f3;
         foreach ($indoor as $interest) {
             if (!in_array($interest, array_values($f3->get('indoor')))) {
                 return false;
@@ -74,9 +73,8 @@ class DatingValidation
      * @param Array outdoor
      * @return boolean
      */
-    function validOutdoor($outdoor)
+    function validOutdoor($outdoor, $f3)
     {
-        global $f3;
         foreach ($outdoor as $interest) {
             if (!in_array($interest, array_values($f3->get('outdoor')))) {
                 return false;
