@@ -77,10 +77,21 @@ class DatingController
                 $this->_f3->set("errors['phoneNumber']", "Please enter a phone number with only numbers and dashes.");
                 $isValid = false;
             }
-            //check for premium membership
-            if (isset($_POST['premiumMembership'])) {
-                $this->_f3->set('premiumMembership', true);
+            $email = $_POST['email'];
+            if ($this->_validation->validEmail($email)) {
+                $_SESSION['email'] = $phone;
+            } else {
+                $this->_f3->set("errors['email']", "Please enter a valid email address.");
+                $isValid = false;
             }
+            $phone = $_POST['phoneNumber'];
+            if ($this->_validation->validPhone($phone)) {
+                $_SESSION['phoneNumber'] = $phone;
+            } else {
+                $this->_f3->set("errors['phoneNumber']", "Please enter a phone number with only numbers and dashes.");
+                $isValid = false;
+            }
+            //check for premium membership
             if (isset($_POST["premiumMembership"])) {
                 $_SESSION["premiumMembership"] = true;
             } else {
@@ -90,13 +101,6 @@ class DatingController
             //Redirect to Profile
             if ($isValid) {
                 //add to session
-                if ($_SESSION['premiumMembership']) {
-                    $user = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
-                        $_SESSION['gender'], $_SESSION['phoneNumber']);
-                } else {
-                    $user = new Member($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
-                        $_SESSION['gender'], $_SESSION['phoneNumber']);
-                }
                 $this->_f3->set("user", $user);
                 $_SESSION["user"] = $user;
                 $this->_f3->reroute('/profile');
@@ -121,7 +125,7 @@ class DatingController
                 $isValid = false;
             }
             $selectedState = $_POST['state'];
-            if (in_array($selectedState, $this->_f3->get("states"))) {
+            if ($this->_validation->validState($selectedState, $this->_f3)) {
                 $_SESSION['state'] = $selectedState;
             } else {
                 $this->_f3->set("errors['state]", "Please enter a valid state.");
@@ -144,7 +148,10 @@ class DatingController
                 $_SESSION["user"]->setState($_SESSION["state"]);
                 $_SESSION["user"]->setSeeking($_SESSION["seeking"]);
                 $_SESSION["user"]->setBio($_SESSION["bio"]);
-
+                $user = new Member($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'], $_SESSION['gender'],
+                    $_SESSION['phoneNumber'], $email, $selectedState, $selectedSeeking, $bio);
+                $id = $GLOBALS['db']->createMember($user);
+                $_SESSION['id'] = $id;
                 //if the user is a premium member, redirect to interests page
                 if (($_SESSION['premiumMembership'])) {
                     $this->_f3->reroute('/interests');
@@ -154,7 +161,6 @@ class DatingController
                 }
             }
         }
-
         $view = new Template();
         echo $view->render('view/profile.html');
     }
@@ -180,15 +186,17 @@ class DatingController
                     $isValid = false;
                 }
             }
-
             if ($isValid) {
                 $_SESSION["user"]->setIndoorInterests($_SESSION["indoorInterests"]);
                 $_SESSION["user"]->setOutdoorInterests($_SESSION["outdoorInterests"]);
-                //Redirect to Summary
-                $this->_f3->reroute('/summary');
+                $premiumUser = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
+                    $_SESSION['gender'], $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'],
+                    $_SESSION['seeking'], $_SESSION['bio'], $selectedIndoor, $selectedOutdoor);
+                $GLOBALS['db']->premiumMember($premiumUser, $_SESSION['id']);
             }
+            //Redirect to Summary
+            $this->_f3->reroute('/summary');
         }
-
         $view = new Template();
         echo $view->render('view/interests.html');
     }

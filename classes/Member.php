@@ -19,7 +19,7 @@ class Member
     /*
      * Member constructor
      */
-    public function __construct($fname, $lname, $age, $gender, $phone)
+    public function __construct($fname, $lname, $age, $gender, $phone, $email, $state = NULL, $seeking = NULL, $bio = NULL)
     {
         $this->_fname = $fname;
         $this->_lname = $lname;

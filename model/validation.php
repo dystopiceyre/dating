@@ -40,6 +40,10 @@ class DatingValidation
         return !empty($email) && preg_match('/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/', $email);
     }
 
+    function validState($selectedState, $f3) {
+        return in_array($selectedState, $f3->get("states"));
+    }
+
     /* checks each selected seeking value against a list of valid options
      * @param Array seeking
      * @return boolean
@@ -47,7 +51,7 @@ class DatingValidation
     function validSeeking($seeking, $f3)
     {
         foreach ($seeking as $gender) {
-            if (!in_array($gender, array_values($f3->get("genders")))) {
+            if (!in_array($gender, $f3->get("genders"))) {
                 echo "false";
                 return false;
             }
