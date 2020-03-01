@@ -26,8 +26,8 @@ class DatingController
             'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
             'VA', 'WA', 'WI', 'WV', 'WY'));
         $this->_f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer'));
-        $this->_f3->set('indoor', array('reading', 'writing-letters', 'playing-instrument', 'singing', 'sewing', 'cooking'));
-        $this->_f3->set('outdoor', array('horseback-riding', 'fencing', 'walking', 'picknicking', 'gardening', 'swimming'));
+        $this->_f3->set('indoor', array('reading' => 1, 'writing-letters' => 2, 'playing-instrument' => 3, 'singing' => 4, 'sewing' => 5, 'cooking' => 6));
+        $this->_f3->set('outdoor', array('horseback-riding' => 7, 'fencing' => 8, 'walking' => 9, 'picknicking' => 10, 'gardening' => 11, 'swimming' => 12));
     }
 
     public function home()
