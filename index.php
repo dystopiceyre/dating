@@ -7,6 +7,16 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 session_start();
 
+require('/home/oringhis/datingConfig.php');
+try {
+    $db = new PDO(DB_DATING_DSN, DB_DATING_USERNAME, DB_DATING_PASSWORD);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+$f3 = Base::instance();
+$f3->set('DEBUG', 3);
+$db = new DatingDatabase();
 $controller = new DatingController();
 
 //define default route

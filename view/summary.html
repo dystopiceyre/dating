@@ -8,6 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Truth Universally Acknowledged</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="/328/dating/styles/styles.css" rel="stylesheet">
@@ -43,14 +44,14 @@
                     <td>State: {{ @SESSION['user']->getState() }}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{ implode(", ", @SESSION['user']->getSeeking()) }}</td>
+                    <td>Seeking: {{ @SESSION['user']->getSeeking()) }}</td>
                 </tr>
                 <check if="{{ ($_SESSION['premiumMembership']) }}">
                     <tr>
-                        <td>Indoor Interests: {{ implode(", ", @SESSION['user']->getIndoorInterests()) }}</td>
+                        <td>Indoor Interests: {{ @SESSION['user']->getIndoorInterests()) }}</td>
                     </tr>
                     <tr>
-                        <td>Outdoor Interests: {{ implode(", ", @SESSION['user']->getOutdoorInterests()) }}</td>
+                        <td>Outdoor Interests: {{ @SESSION['user']->getOutdoorInterests()) }}</td>
                     </tr>
                 </check>
             </table>
