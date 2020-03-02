@@ -32,12 +32,14 @@ CREATE TABLE `member_interest` (
 
 class DatingDatabase
 {
+    //PDO object
+    private $_db;
+
     function __construct()
     {
         require('/home/oringhis/datingConfig.php');
         try {
             $this->_db = new PDO(DB_DATING_DSN, DB_DATING_USERNAME, DB_DATING_PASSWORD);
-            echo "connected!";
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -88,6 +90,7 @@ class DatingDatabase
         $statement->bindParam(':member_id', $id, PDO::PARAM_INT);
         $statement = $this->_db->prepare($sql);
         $statement->execute();
+        echo "added premium member info!";
     }
 
     function addInterests()
