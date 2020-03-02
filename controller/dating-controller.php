@@ -26,8 +26,8 @@ class DatingController
             'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
             'VA', 'WA', 'WI', 'WV', 'WY'));
         $this->_f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer'));
-        $this->_f3->set('indoor', array('reading' => 1, 'writing-letters' => 2, 'playing-instrument' => 3, 'singing' => 4, 'sewing' => 5, 'cooking' => 6));
-        $this->_f3->set('outdoor', array('horseback-riding' => 7, 'fencing' => 8, 'walking' => 9, 'picknicking' => 10, 'gardening' => 11, 'swimming' => 12));
+        $this->_f3->set('indoor', array(1 => 'reading', 2 => 'writing-letters', 3 => 'playing-instrument', 4 => 'singing', 5 => 'sewing', 6 => 'cooking'));
+        $this->_f3->set('outdoor', array(7 => 'horseback-riding', 8 =>'fencing', 9 => 'walking', 10 => 'picknicking', 11 => 'gardening', 12 => 'swimming'));
     }
 
     public function home()
@@ -77,43 +77,23 @@ class DatingController
                 $this->_f3->set("errors['phoneNumber']", "Please enter a phone number with only numbers and dashes.");
                 $isValid = false;
             }
-            $email = $_POST['email'];
-            if ($this->_validation->validEmail($email)) {
-                $_SESSION['email'] = $phone;
-            } else {
-                $this->_f3->set("errors['email']", "Please enter a valid email address.");
-                $isValid = false;
-            }
-            $phone = $_POST['phoneNumber'];
-            if ($this->_validation->validPhone($phone)) {
-                $_SESSION['phoneNumber'] = $phone;
-            } else {
-                $this->_f3->set("errors['phoneNumber']", "Please enter a phone number with only numbers and dashes.");
-                $isValid = false;
-            }
             //check for premium membership
             if (isset($_POST["premiumMembership"])) {
                 $_SESSION["premiumMembership"] = true;
             } else {
                 $_SESSION["premiumMembership"] = false;
             }
-
             //Redirect to Profile
             if ($isValid) {
-                //add to session
-                $this->_f3->set("user", $user);
-                $_SESSION["user"] = $user;
                 $this->_f3->reroute('/profile');
             }
         }
-
         //display form
         $view = new Template();
         echo $view->render('view/personal.html');
     }
 
-    public
-    function profile()
+    public function profile()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $isValid = true;
@@ -141,19 +121,9 @@ class DatingController
             if (isset($bio)) {
                 $_SESSION['bio'] = $bio;
             }
-
             if ($isValid) {
-                //Write data to Session
-                $_SESSION["user"]->setEmail($_SESSION["email"]);
-                $_SESSION["user"]->setState($_SESSION["state"]);
-                $_SESSION["user"]->setSeeking($_SESSION["seeking"]);
-                $_SESSION["user"]->setBio($_SESSION["bio"]);
-                $user = new Member($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'], $_SESSION['gender'],
-                    $_SESSION['phoneNumber'], $email, $selectedState, $selectedSeeking, $bio);
-                $id = $GLOBALS['db']->createMember($user);
-                $_SESSION['id'] = $id;
                 //if the user is a premium member, redirect to interests page
-                if (($_SESSION['premiumMembership'])) {
+                if ($_SESSION['premiumMembership']) {
                     $this->_f3->reroute('/interests');
                 } else {
                     //non-members go straight to the profile summary
@@ -165,8 +135,7 @@ class DatingController
         echo $view->render('view/profile.html');
     }
 
-    public
-    function interests()
+    public function interests()
     {
         $isValid = true;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -187,23 +156,28 @@ class DatingController
                 }
             }
             if ($isValid) {
-                $_SESSION["user"]->setIndoorInterests($_SESSION["indoorInterests"]);
-                $_SESSION["user"]->setOutdoorInterests($_SESSION["outdoorInterests"]);
-                $premiumUser = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
-                    $_SESSION['gender'], $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'],
-                    $_SESSION['seeking'], $_SESSION['bio'], $selectedIndoor, $selectedOutdoor);
-                $GLOBALS['db']->premiumMember($premiumUser, $_SESSION['id']);
+                //Redirect to Summary
+                $this->_f3->reroute('/summary');
             }
-            //Redirect to Summary
-            $this->_f3->reroute('/summary');
         }
         $view = new Template();
         echo $view->render('view/interests.html');
     }
 
-    public
-    function summary()
+    public function summary()
     {
+        $user = new Member($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'], $_SESSION['gender'],
+            $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'], $_SESSION['seeking'],
+            $_SESSION['bio']);
+        $_SESSION['user'] = $user;
+        $id = $GLOBALS['db']->createMember($user);
+        if ($_SESSION["premiumMembership"] == true) {
+            $premiumUser = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
+                $_SESSION['gender'], $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'],
+                $_SESSION['seeking'], $_SESSION['bio'], $_SESSION['indoorInterests'], $_SESSION['outdoorInterests']);
+            $_SESSION['user'] = $premiumUser;
+            $GLOBALS['db']->premiumMember($premiumUser, $id);
+        }
         $view = new Template();
         echo $view->render('view/summary.html');
     }

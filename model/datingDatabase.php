@@ -64,18 +64,17 @@ class DatingDatabase
 
     function createMember($member)
     {
-        $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, bio)
-        VALUES (:fname, :lname, :age, :gender, :phone, :email, :state, :bio)";
+        $sql = "INSERT INTO member(fname, lname, age, gender, phone, email, state, bio)
+        VALUES (:firstName, :lastName, :age, :gender, :phone, :email, :state, :bio)";
         $statement = $this->_db->prepare($sql);
-        $statement->bindParam(':fname', $member->getFname(), PDO::PARAM_STR);
-        $statement->bindParam(':lname', $member->getLname(), PDO::PARAM_STR);
+        $statement->bindParam(':firstName', $member->getFname(), PDO::PARAM_STR);
+        $statement->bindParam(':lastName', $member->getLname(), PDO::PARAM_STR);
         $statement->bindParam(':age', $member->getAge(), PDO::PARAM_INT);
         $statement->bindParam(':gender', $member->getGender(), PDO::PARAM_STR);
         $statement->bindParam(':phone', $member->getPhone());
         $statement->bindParam(':email', $member->getEmail(), PDO::PARAM_STR);
         $statement->bindParam(':state', $member->getState(), PDO::PARAM_STR);
         $statement->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
-        $statement = $this->_db->prepare($sql);
         $statement->execute();
         echo "Created a new member profile!";
         return $id = $this->_db->lastInsertId();
@@ -83,12 +82,10 @@ class DatingDatabase
 
     function premiumMember($premiumMember, $id)
     {
-        $sql = "UPDATE member SET premium = :premium, image = :images WHERE member_id = :member_id";
+        $sql = "UPDATE member SET premium = :premium WHERE member_id = :member_id";
         $statement = $this->_db->prepare($sql);
         $statement->bindParam(':premium', $premium = 1, PDO::PARAM_INT);
-        $statement->bindParam(':image', $premiumMember->getImage(), PDO::PARAM_STR);
         $statement->bindParam(':member_id', $id, PDO::PARAM_INT);
-        $statement = $this->_db->prepare($sql);
         $statement->execute();
         echo "added premium member info!";
     }
