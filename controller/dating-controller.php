@@ -25,9 +25,9 @@ class DatingController
             'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY',
             'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT',
             'VA', 'WA', 'WI', 'WV', 'WY'));
-        $this->_f3->set('genders', array('male', 'female', 'nonbinary', 'genderqueer'));
+        $this->_f3->set('genders', array(1 => 'male', 2 => 'female', 3 => 'nonbinary', 4 => 'genderqueer'));
         $this->_f3->set('indoor', array(1 => 'reading', 2 => 'writing-letters', 3 => 'playing-instrument', 4 => 'singing', 5 => 'sewing', 6 => 'cooking'));
-        $this->_f3->set('outdoor', array(7 => 'horseback-riding', 8 =>'fencing', 9 => 'walking', 10 => 'picknicking', 11 => 'gardening', 12 => 'swimming'));
+        $this->_f3->set('outdoor', array(7 => 'horseback-riding', 8 => 'fencing', 9 => 'walking', 10 => 'picknicking', 11 => 'gardening', 12 => 'swimming'));
     }
 
     public function home()
@@ -122,11 +122,11 @@ class DatingController
                 $_SESSION['bio'] = $bio;
             }
             if ($isValid) {
-                //if the user is a premium member, redirect to interests page
+//                //if the user is a premium member, redirect to interests page
                 if ($_SESSION['premiumMembership']) {
                     $this->_f3->reroute('/interests');
                 } else {
-                    //non-members go straight to the profile summary
+//                    //non-members go straight to the profile summary
                     $this->_f3->reroute('/summary');
                 }
             }
@@ -156,7 +156,7 @@ class DatingController
                 }
             }
             if ($isValid) {
-                //Redirect to Summary
+//                Redirect to Summary
                 $this->_f3->reroute('/summary');
             }
         }
@@ -170,13 +170,29 @@ class DatingController
             $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'], $_SESSION['seeking'],
             $_SESSION['bio']);
         $_SESSION['user'] = $user;
+//        add base member to db and get id
         $id = $GLOBALS['db']->createMember($user);
+        //add seeking info to db
+        foreach ($_SESSION['seeking'] as $index => $seeking) {
+            $seeking_id = array_search($seeking, $this->_f3->get('genders'));
+            $GLOBALS['db']->addSeeking($id, $seeking_id);
+        }
         if ($_SESSION["premiumMembership"] == true) {
             $premiumUser = new PremiumMember($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['age'],
                 $_SESSION['gender'], $_SESSION['phoneNumber'], $_SESSION['email'], $_SESSION['state'],
                 $_SESSION['seeking'], $_SESSION['bio'], $_SESSION['indoorInterests'], $_SESSION['outdoorInterests']);
             $_SESSION['user'] = $premiumUser;
+            //update base member with premium info
             $GLOBALS['db']->premiumMember($premiumUser, $id);
+            //add interest info to db
+            foreach ($_SESSION['indoorInterests'] as $index => $indoor) {
+                $interest_id = array_search($indoor, $this->_f3->get('indoor'));
+                $GLOBALS['db']->addInterests($id, $interest_id);
+            }
+            foreach ($_SESSION['outdoorInterests'] as $index => $outdoor) {
+                $interest_id = array_search($outdoor, $this->_f3->get('outdoor'));
+                $GLOBALS['db']->addInterests($id, $interest_id);
+            }
         }
         $view = new Template();
         echo $view->render('view/summary.html');

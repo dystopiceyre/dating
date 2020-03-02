@@ -44,14 +44,14 @@
                     <td>State: {{ @SESSION['user']->getState() }}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{ @SESSION['user']->getSeeking() }}</td>
+                    <td>Seeking: {{ implode(", ", @SESSION['user']->getSeeking()) }}</td>
                 </tr>
                 <check if="{{ ($_SESSION['premiumMembership']) }}">
                     <tr>
-                        <td>Indoor Interests: {{ @SESSION['user']->getIndoorInterests() }}</td>
+                        <td>Indoor Interests: {{ implode(", ", @SESSION['user']->getIndoorInterests()) }}</td>
                     </tr>
                     <tr>
-                        <td>Outdoor Interests: {{ @SESSION['user']->getOutdoorInterests() }}</td>
+                        <td>Outdoor Interests: {{ implode(", ", @SESSION['user']->getOutdoorInterests()) }}</td>
                     </tr>
                 </check>
             </table>

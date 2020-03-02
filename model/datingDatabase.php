@@ -76,7 +76,7 @@ class DatingDatabase
         $statement->bindParam(':state', $member->getState(), PDO::PARAM_STR);
         $statement->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
         $statement->execute();
-        echo "Created a new member profile!";
+        echo "Created a new member profile!<br>";
         return $id = $this->_db->lastInsertId();
     }
 
@@ -87,29 +87,49 @@ class DatingDatabase
         $statement->bindParam(':premium', $premium = 1, PDO::PARAM_INT);
         $statement->bindParam(':member_id', $id, PDO::PARAM_INT);
         $statement->execute();
-        echo "added premium member info!";
+        echo "Added premium member info!<br>";
     }
 
-    function addInterests()
+    function addInterests($id, $interest_id)
     {
-
+        $sql = "INSERT INTO member_interest(member_id, interest_id)
+        VALUES (:id, :interest)";
+        $statement = $this->_db->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':interest', $interest_id, PDO::PARAM_INT);
+        $statement->execute();
+        echo "Added interest id" . $interest_id . "!<br>";
     }
 
     function getInterests($member_id)
     {
-        //need to expand to specify member
-        $sql = "SELECT * FROM interest INNER JOIN member_interest ON member_interest.interest_id = interest.interest_id";
+        $sql = "SELECT interest, type FROM interest INNER JOIN member_interest ON member_interest.interest_id 
+                                                    = interest.interest_id AND member_id = :member_id";
         $statement = $this->_db->prepare($sql);
+        $statement->bindParam(':member_id', $member_id, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function addSeeking()
+    function addSeeking($id, $seeking_id)
     {
+        $sql = "INSERT INTO member_seeking(member_id, seeking_id)
+        VALUES (:id, :seeking_id)";
+        $statement = $this->_db->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':seeking_id', $seeking_id, PDO::PARAM_INT);
+        $statement->execute();
+        echo "Added seeking info!<br>";
     }
 
-    function getSeeking()
+    function getSeeking($member_id)
     {
+        $sql = "SELECT seeking FROM seeking INNER JOIN member_seeking ON member_seeking.seeking_id =
+                                                         seeking.seeking_id AND member_id = :member_id";
+        $statement = $this->_db->prepare($sql);
+        $statement->bindParam(':member_id', $member_id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
