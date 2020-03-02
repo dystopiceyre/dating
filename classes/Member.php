@@ -26,6 +26,10 @@ class Member
         $this->_age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+        $this->_email = $email;
+        $this->_state = $state;
+        $this->_seeking = $seeking;
+        $this->_bio = $bio;
     }
 
     /**
