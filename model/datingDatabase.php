@@ -112,10 +112,11 @@ class DatingDatabase
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($results as $index => $arr) {
             foreach ($arr as $interests => $interest) {
-                $interestsString .= $interest . " ";
+                $interestsString .= $interest . ", ";
             }
         }
-        return trim($interestsString);
+        //cut off last comma and space
+        return substr($interestsString, 0, strlen($interestsString) - 2);
     }
 
     function addSeeking($id, $seeking_id)
@@ -140,10 +141,11 @@ class DatingDatabase
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($results as $index => $arr) {
             foreach ($arr as $seeking => $gender) {
-                $seekingString .= $gender . " ";
+                $seekingString .= $gender . ", ";
             }
         }
-        return trim($seekingString);
+        //cut off last comma and space
+        return substr($seekingString, 0, strlen($seekingString) - 2);
     }
 
 }
