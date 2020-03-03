@@ -198,6 +198,14 @@ class DatingController
         echo $view->render('view/summary.html');
     }
 
+    public function admin()
+    {
+        $members = $GLOBALS['db']->getMembers();
+        $this->_f3->set('members', $members);
+        $view = new Template();
+        echo $view->render('view/admin.html');
+    }
+
     public
     function getValidation()
     {

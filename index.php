@@ -49,4 +49,10 @@ $controller->getF3()->route('GET|POST /summary', function () {
     $controller->summary();
 });
 
+//define admin route
+$controller->getF3()->route('GET /admin', function () {
+    global $controller;
+    $controller->admin();
+});
+
 $controller->getF3()->run();

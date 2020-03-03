@@ -47,7 +47,7 @@ class DatingDatabase
 
     function getMembers()
     {
-        $sql = "SELECT * FROM member";
+        $sql = "SELECT * FROM member ORDER BY lname";
         $statement = $this->_db->prepare($sql);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -103,12 +103,19 @@ class DatingDatabase
 
     function getInterests($member_id)
     {
+        $interestsString = "";
         $sql = "SELECT interest, type FROM interest INNER JOIN member_interest ON member_interest.interest_id 
                                                     = interest.interest_id AND member_id = :member_id";
         $statement = $this->_db->prepare($sql);
         $statement->bindParam(':member_id', $member_id, PDO::PARAM_INT);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($results as $index => $arr) {
+            foreach ($arr as $interests => $interest) {
+                $interestsString .= $interest . " ";
+            }
+        }
+        return trim($interestsString);
     }
 
     function addSeeking($id, $seeking_id)
@@ -124,12 +131,19 @@ class DatingDatabase
 
     function getSeeking($member_id)
     {
+        $seekingString = '';
         $sql = "SELECT seeking FROM seeking INNER JOIN member_seeking ON member_seeking.seeking_id =
                                                          seeking.seeking_id AND member_id = :member_id";
         $statement = $this->_db->prepare($sql);
         $statement->bindParam(':member_id', $member_id, PDO::PARAM_INT);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($results as $index => $arr) {
+            foreach ($arr as $seeking => $gender) {
+                $seekingString .= $gender . " ";
+            }
+        }
+        return trim($seekingString);
     }
 
 }

@@ -90,7 +90,7 @@ p {
     color: #2D2F31;
 }
 
-table, td, tr {
+table, td, tr, th {
     border: 2px black solid;
 }
 

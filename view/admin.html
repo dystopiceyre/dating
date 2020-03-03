@@ -1,0 +1,66 @@
+<!--
+    Olivia Ringhiser
+	3/1/2020
+	url: http://oringhiser.greenriverdev.com/328/dating/admin
+	Description: table showing member info
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Truth Universally Acknowledged</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="/328/dating/styles/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar rounded">
+                <span class="navbar-brand navbar-expand-lg h1">
+                    <a href="/328/dating/" class="navbar-brand">A Truth Universally Acknowledged</a>
+                </span>
+    </nav>
+    <table class="table table-bordered table-striped table-hover table-sm table-responsive">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>State</th>
+            <th>Biography</th>
+            <th>Premium</th>
+            <th>Seeking</th>
+            <th>Interests</th>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{ @members }}" value="{{ @member }}">
+            <tr>
+                <td>{{ @member['member_id'] }}</td>
+                <td>{{ @member['fname'] }} {{ @member['lname'] }}</td>
+                <td>{{ @member['age'] }}</td>
+                <td>{{ @member['gender'] }}</td>
+                <td>{{ @member['phone'] }}</td>
+                <td>{{ @member['email'] }}</td>
+                <td>{{ @member['state'] }}</td>
+                <td>{{ @member['bio'] }}</td>
+                <td>
+                    <check if="{{ @member['premium'] }} == 1">
+                        <input type="checkbox" checked="checked">
+                    </check>
+                </td>
+                <td>{{$GLOBALS['db']->getSeeking($member['member_id'])}}</td>
+                <td>{{$GLOBALS['db']->getInterests($member['member_id'])}}</td>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
