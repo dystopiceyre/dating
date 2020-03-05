@@ -104,7 +104,7 @@ class DatingDatabase
     function getInterests($member_id)
     {
         $interestsString = "";
-        $sql = "SELECT interest, type FROM interest INNER JOIN member_interest ON member_interest.interest_id 
+        $sql = "SELECT interest FROM interest INNER JOIN member_interest ON member_interest.interest_id 
                                                     = interest.interest_id AND member_id = :member_id";
         $statement = $this->_db->prepare($sql);
         $statement->bindParam(':member_id', $member_id, PDO::PARAM_INT);
